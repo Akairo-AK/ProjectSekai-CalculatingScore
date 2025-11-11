@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロセカ失点計算ツール</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      text-align: center;
+      width: 300px;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0.6rem 0;
+    }
+
+    label {
+      font-weight: bold;
+      width: 80px;
+      text-align: left;
+    }
+
+    input {
+      width: 80px;
+      padding: 0.3rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.3rem;
+      text-align: right;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>プロセカ 失点計算</h1>
+
+    <div class="input-group">
+      <label for="great">GREAT</label>
+      <input type="number" id="great" min="0" value="0">
+    </div>
+
+    <div class="input-group">
+      <label for="good">GOOD</label>
+      <input type="number" id="good" min="0" value="0">
+    </div>
+
+    <div class="input-group">
+      <label for="bad">BAD</label>
+      <input type="number" id="bad" min="0" value="0">
+    </div>
+
+    <div class="input-group">
+      <label for="miss">MISS</label>
+      <input type="number" id="miss" min="0" value="0">
+    </div>
+
+    <button onclick="calcScore()">失点計算</button>
+
+    <div class="result" id="result">合計失点：0</div>
+  </div>
+
+  <script>
+    function calcScore() {
+      const great = Number(document.getElementById('great').value);
+      const good = Number(document.getElementById('good').value);
+      const bad = Number(document.getElementById('bad').value);
+      const miss = Number(document.getElementById('miss').value);
+
+      // 各判定の重み（GREAT=1, GOOD=2, BAD=3, MISS=3）
+      const score = great * 1 + good * 2 + bad * 3 + miss * 3;
+      document.getElementById('result').textContent = `合計失点：${score}`;
+    }
+  </script>
+</body>
+</html>
